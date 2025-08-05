@@ -20,6 +20,7 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       font-size: 16px;
       color: #333;
+      transition: background 0.3s, color 0.3s;
     }
     body.dark-mode #metodos-pago {
       background: #1f1f1f;
@@ -53,103 +54,13 @@
       top: 0;
       color: #27ae60;
     }
-
-    /* Ajuste para catálogo PC sin imágenes */
-    #catalogo-pc .producto {
-      text-align: center;
-      border: 1px solid #ddd;
-      padding: 15px;
-      margin: 15px;
-      border-radius: 10px;
-      background: #fafafa;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      transition: box-shadow 0.3s ease;
-    }
-    #catalogo-pc .producto:hover {
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-
-    #catalogo-pc .producto h3,
-    #catalogo-pc .producto p,
-    #catalogo-pc .producto strong {
-      margin: 8px 0;
-    }
-
-    .boton-comprar {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 18px;
-      font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .boton-comprar:hover {
-      background-color: #0056b3;
-    }
-
-    /* Carrito */
-    #carrito {
-      max-width: 600px;
-      margin: 30px auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    #carrito h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    #lista-carrito {
-      list-style: none;
-      padding-left: 0;
-      margin-bottom: 15px;
-    }
-    #lista-carrito li {
-      margin-bottom: 10px;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    #vaciar-carrito,
-    #finalizar-compra {
-      cursor: pointer;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-    }
-    #vaciar-carrito {
-      background-color: #dc3545;
-      color: white;
-      margin-right: 10px;
-      transition: background-color 0.3s ease;
-    }
-    #vaciar-carrito:hover {
-      background-color: #a71d2a;
-    }
-    #finalizar-compra {
-      background-color: #008CBA;
-      color: white;
-      transition: background-color 0.3s ease;
-    }
-    #finalizar-compra:hover {
-      background-color: #006a8d;
-    }
-
   </style>
 </head>
 <body>
 
-  <header class="main-header">
-    <h1>Meteoritopc.com</h1>
-  </header>
+  <header>Meteoritopc.com</header>
 
-  <nav class="main-nav">
+  <nav>
     <a href="index.html">Inicio</a>
     <a href="pc.html" class="activo">PC Armadas</a>
     <a href="componentes.html">Componentes</a>
@@ -202,7 +113,7 @@
       <ul id="lista-carrito"></ul>
       <p>Total: $<span id="total">0</span> ARS</p>
       <button id="vaciar-carrito">Vaciar carrito</button>
-      <button id="finalizar-compra">
+      <button id="finalizar-compra" class="boton-finalizar">
         <i class="fas fa-credit-card" style="margin-right:8px;"></i> Finalizar compra
       </button>
     </section>
@@ -217,7 +128,7 @@
     </section>
   </main>
 
-  <footer class="main-footer">
+  <footer>
     &copy; 2025 Meteoritopc.com - Todos los derechos reservados
   </footer>
 
