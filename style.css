@@ -292,3 +292,14 @@ footer {
     font-size: 26px;
   }
 }
+
+/* --- Ajuste para catálogo PC sin imágenes --- */
+#catalogo-pc .producto {
+  text-align: center;
+}
+
+#catalogo-pc .producto h3,
+#catalogo-pc .producto p,
+#catalogo-pc .producto strong {
+  margin: 8px 0;
+}
