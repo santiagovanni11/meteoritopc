@@ -9,14 +9,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let carrito = [];
 
+  // Cargar carrito desde localStorage si existe
   const guardado = localStorage.getItem('carrito');
   carrito = guardado ? JSON.parse(guardado) : [];
   renderCarrito();
 
+  // Aplicar modo oscuro si estaba activo
   if (localStorage.getItem('modoOscuro') === 'true') {
     document.body.classList.add('dark-mode');
   }
 
+  // Función para mostrar carrito en pantalla
   function renderCarrito() {
     if (!listaCarrito || !totalCarrito) return;
 
@@ -25,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     carrito.forEach((p, i) => {
       const li = document.createElement('li');
       li.textContent = `${p.nombre} – $${p.precio.toLocaleString('es-AR')}`;
+      
+      // Botón quitar
       const btnX = document.createElement('button');
       btnX.textContent = 'X';
       btnX.style.marginLeft = '10px';
@@ -34,12 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
       btnX.style.borderRadius = '4px';
       btnX.style.cursor = 'pointer';
       btnX.style.padding = '2px 6px';
-      btnX.title = 'Quitar';
+      btnX.title = 'Quitar del carrito';
       btnX.addEventListener('click', () => {
         carrito.splice(i, 1);
         guardarCarrito();
         renderCarrito();
       });
+
       li.appendChild(btnX);
       listaCarrito.appendChild(li);
       total += p.precio;
@@ -48,13 +54,19 @@ document.addEventListener('DOMContentLoaded', () => {
     guardarCarrito();
   }
 
+  // Guardar carrito en localStorage
   function guardarCarrito() {
     localStorage.setItem('carrito', JSON.stringify(carrito));
   }
 
+  // Añadir producto al carrito al click en botón comprar
   botonesComprar.forEach(btn => {
     btn.addEventListener('click', () => {
-      const prod = btn.parentElement;
+      // En algunos HTML el botón está dentro de div.producto o article.producto
+      // Se busca el elemento padre que tiene data-nombre y data-precio
+      let prod = btn.closest('.producto');
+      if (!prod) return;
+
       const nombre = prod.getAttribute('data-nombre');
       const precio = parseFloat(prod.getAttribute('data-precio'));
       carrito.push({ nombre, precio });
@@ -63,17 +75,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Vaciar carrito
   vaciarCarritoBtn?.addEventListener('click', () => {
     carrito = [];
     guardarCarrito();
     renderCarrito();
   });
 
+  // Finalizar compra
   finalizarCompraBtn?.addEventListener('click', () => {
     if (!carrito.length) alert('Tu carrito está vacío.');
     else window.location.href = 'finalizar.html';
   });
 
+  // Toggle modo oscuro
   toggleDark?.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
     localStorage.setItem('modoOscuro', document.body.classList.contains('dark-mode'));
