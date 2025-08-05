@@ -1,29 +1,69 @@
-// carrito.js
+// carrito.js - script compartido para todas las páginas con carrito
+
 const botonesComprar = document.querySelectorAll('.boton-comprar');
 const listaCarrito = document.getElementById('lista-carrito');
 const totalCarrito = document.getElementById('total');
 const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
-const comprarCarritoBtn = document.getElementById('comprar-carrito');
+const finalizarCompraBtn = document.getElementById('finalizar-compra');
 const toggleDark = document.getElementById('toggle-dark');
 
 let carrito = [];
 
-// Renderiza el carrito
+// Cargar carrito desde localStorage al cargar página
+document.addEventListener('DOMContentLoaded', () => {
+  const carritoGuardado = localStorage.getItem('carrito');
+  if (carritoGuardado) {
+    carrito = JSON.parse(carritoGuardado);
+    renderCarrito();
+  }
+  if (localStorage.getItem('modoOscuro') === 'true') {
+    document.body.classList.add('dark-mode');
+  }
+});
+
+// Renderiza el carrito en pantalla
 function renderCarrito() {
   listaCarrito.innerHTML = '';
   let total = 0;
 
-  carrito.forEach((producto) => {
+  carrito.forEach((producto, index) => {
     const li = document.createElement('li');
     li.textContent = `${producto.nombre} - $${producto.precio.toLocaleString('es-AR')}`;
+    
+    // Botón para eliminar producto
+    const btnEliminar = document.createElement('button');
+    btnEliminar.textContent = 'X';
+    btnEliminar.style.marginLeft = '10px';
+    btnEliminar.style.background = '#e65c00';
+    btnEliminar.style.color = '#fff';
+    btnEliminar.style.border = 'none';
+    btnEliminar.style.borderRadius = '4px';
+    btnEliminar.style.cursor = 'pointer';
+    btnEliminar.style.padding = '2px 6px';
+    btnEliminar.title = 'Quitar producto';
+
+    btnEliminar.addEventListener('click', () => {
+      carrito.splice(index, 1);
+      guardarCarrito();
+      renderCarrito();
+    });
+
+    li.appendChild(btnEliminar);
     listaCarrito.appendChild(li);
+
     total += producto.precio;
   });
 
   totalCarrito.textContent = total.toLocaleString('es-AR');
+
+  guardarCarrito();
 }
 
-// Agregar producto
+function guardarCarrito() {
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+// Agregar producto al carrito
 botonesComprar.forEach((btn) => {
   btn.addEventListener('click', () => {
     const productoDiv = btn.parentElement;
@@ -31,6 +71,7 @@ botonesComprar.forEach((btn) => {
     const precio = parseFloat(productoDiv.getAttribute('data-precio'));
 
     carrito.push({ nombre, precio });
+    guardarCarrito();
     renderCarrito();
   });
 });
@@ -38,26 +79,17 @@ botonesComprar.forEach((btn) => {
 // Vaciar carrito
 vaciarCarritoBtn.addEventListener('click', () => {
   carrito = [];
+  guardarCarrito();
   renderCarrito();
 });
 
-// Comprar por WhatsApp
-comprarCarritoBtn.addEventListener('click', () => {
+// Finalizar compra: redirigir a finalizar.html si hay productos
+finalizarCompraBtn.addEventListener('click', () => {
   if (carrito.length === 0) {
     alert('Tu carrito está vacío.');
     return;
   }
-
-  const numeroWhatsApp = '5491123456789'; // Cambiar por tu número real
-
-  let mensaje = 'Hola, quiero comprar estos productos:%0A';
-  carrito.forEach((p) => {
-    mensaje += `- ${p.nombre}: $${p.precio.toLocaleString('es-AR')} ARS%0A`;
-  });
-  mensaje += `Total: $${carrito.reduce((acc, p) => acc + p.precio, 0).toLocaleString('es-AR')} ARS`;
-
-  const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
-  window.open(urlWhatsApp, '_blank');
+  window.location.href = 'finalizar.html';
 });
 
 // Dark Mode toggle
@@ -66,9 +98,3 @@ toggleDark.addEventListener('click', () => {
   localStorage.setItem('modoOscuro', document.body.classList.contains('dark-mode'));
 });
 
-// Mantener preferencia Dark Mode
-document.addEventListener('DOMContentLoaded', () => {
-  if (localStorage.getItem('modoOscuro') === 'true') {
-    document.body.classList.add('dark-mode');
-  }
-});
