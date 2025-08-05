@@ -59,8 +59,9 @@ nav a:hover {
   color: #fff;
   padding: 10px 20px;
   border-radius: 5px;
-  text-decoration: none;
   font-weight: bold;
+  border: none;
+  cursor: pointer;
   margin-top: 10px;
 }
 
@@ -103,33 +104,41 @@ footer {
   background: #e65c00;
 }
 
-form {
+#carrito {
   max-width: 400px;
-  margin: 40px auto;
+  margin: 20px auto;
   background: #fff;
-  padding: 20px;
+  padding: 15px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-form input, form textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+#carrito h2 {
+  text-align: center;
 }
 
-form button {
+#lista-carrito {
+  list-style: none;
+  padding: 0;
+}
+
+#lista-carrito li {
+  padding: 8px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+#vaciar-carrito, #comprar-carrito {
   background: #ff6f00;
   color: white;
   border: none;
-  padding: 12px;
-  width: 100%;
+  padding: 10px;
+  width: 48%;
+  margin: 5px 1%;
   border-radius: 5px;
-  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-form button:hover {
+#vaciar-carrito:hover, #comprar-carrito:hover {
   background: #e65c00;
 }
