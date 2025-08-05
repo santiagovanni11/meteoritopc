@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Meteoritopc - PC Armadas</title>
   <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
 </head>
 <body>
   <header>Meteoritopc.com</header>
@@ -12,23 +16,26 @@
     <a href="index.html">Inicio</a>
     <a href="pc.html">PC Armadas</a>
     <a href="componentes.html">Componentes</a>
+    <a href="monitores.html">Monitores</a>
     <a href="contacto.html">Contacto</a>
   </nav>
 
+  <h2 class="titulo-seccion">PC Armadas</h2>
+
   <section class="catalogo" id="catalogo-pc">
-    <div class="producto" data-nombre="PC Gamer Meteoro" data-precio="1200">
-      <img src="https://via.placeholder.com/300x180" alt="PC Gamer" />
+    <div class="producto" data-nombre="PC Gamer Meteoro" data-precio="360000">
+      <img src="https://i.imgur.com/qYxnwYP.jpg" alt="PC Gamer Meteoro" />
       <h3>PC Gamer Meteoro</h3>
       <p>Ryzen 7 5700X | RTX 4060 | 16GB RAM</p>
-      <p><strong>$1,200 USD</strong></p>
+      <p><strong>$360,000 ARS</strong></p>
       <button class="boton-comprar">Agregar al carrito</button>
     </div>
 
-    <div class="producto" data-nombre="PC Gamer Pro" data-precio="1800">
-      <img src="https://via.placeholder.com/300x180" alt="PC Pro" />
+    <div class="producto" data-nombre="PC Gamer Pro" data-precio="540000">
+      <img src="https://i.imgur.com/ePzOE43.jpg" alt="PC Gamer Pro" />
       <h3>PC Gamer Pro</h3>
       <p>Intel i7 12700F | RTX 4070 | 32GB RAM</p>
-      <p><strong>$1,800 USD</strong></p>
+      <p><strong>$540,000 ARS</strong></p>
       <button class="boton-comprar">Agregar al carrito</button>
     </div>
   </section>
@@ -36,14 +43,31 @@
   <section id="carrito">
     <h2>Tu Carrito</h2>
     <ul id="lista-carrito"></ul>
-    <p>Total: $<span id="total">0</span> USD</p>
+    <p>Total: $<span id="total">0</span> ARS</p>
     <button id="vaciar-carrito">Vaciar carrito</button>
-    <button id="comprar-carrito">Comprar por WhatsApp</button>
+    <button id="comprar-carrito">
+      <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Comprar por WhatsApp
+    </button>
   </section>
 
   <footer>
     &copy; 2025 Meteoritopc.com - Todos los derechos reservados
   </footer>
+
+  <!-- Botón flotante WhatsApp -->
+  <a
+    href="https://wa.me/5491123456789"
+    target="_blank"
+    class="whatsapp-float"
+    aria-label="WhatsApp"
+    title="Chatear por WhatsApp"
+    ><i class="fab fa-whatsapp"></i
+  ></a>
+
+  <!-- Botón Toggle Dark Mode -->
+  <button id="toggle-dark" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro">
+    <i class="fas fa-moon"></i>
+  </button>
 
   <script src="carrito.js"></script>
 </body>

@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Meteoritopc - Contacto</title>
   <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
 </head>
 <body>
   <header>Meteoritopc.com</header>
@@ -12,21 +16,37 @@
     <a href="index.html">Inicio</a>
     <a href="pc.html">PC Armadas</a>
     <a href="componentes.html">Componentes</a>
+    <a href="monitores.html">Monitores</a>
     <a href="contacto.html">Contacto</a>
   </nav>
 
-  <h2 style="text-align:center; margin-top:20px;">Contáctanos</h2>
+  <h2 class="titulo-seccion">Contáctanos</h2>
 
-  <form id="form-contacto">
+  <form id="form-contacto" class="form-contacto">
     <input type="text" id="nombre" placeholder="Tu nombre" required />
     <input type="email" id="email" placeholder="Tu correo" required />
     <textarea id="mensaje" rows="5" placeholder="Escribe tu mensaje..." required></textarea>
-    <button type="submit">Enviar por WhatsApp</button>
+    <button type="submit" class="boton-comprar">Enviar por WhatsApp</button>
   </form>
 
   <footer>
     &copy; 2025 Meteoritopc.com - Todos los derechos reservados
   </footer>
+
+  <!-- Botón flotante WhatsApp -->
+  <a
+    href="https://wa.me/5491123456789"
+    target="_blank"
+    class="whatsapp-float"
+    aria-label="WhatsApp"
+    title="Chatear por WhatsApp"
+    ><i class="fab fa-whatsapp"></i
+  ></a>
+
+  <!-- Botón Toggle Dark Mode -->
+  <button id="toggle-dark" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro">
+    <i class="fas fa-moon"></i>
+  </button>
 
   <script>
     const form = document.getElementById('form-contacto');
@@ -42,8 +62,15 @@
         return;
       }
 
+      // Validar formato email básico
+      const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!regexEmail.test(email)) {
+        alert('Por favor, ingresa un correo válido.');
+        return;
+      }
+
       const texto = `Hola, me llamo ${nombre}%0ACorreo: ${email}%0AMensaje: ${mensaje}`;
-      const numeroWhatsApp = '5491123456789'; // Cambialo por tu número real con código país (Argentina: 54, +9 es el código móvil)
+      const numeroWhatsApp = '5491123456789'; // Cambiar por tu número real
 
       const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${texto}`;
       window.open(urlWhatsApp, '_blank');
@@ -51,4 +78,3 @@
   </script>
 </body>
 </html>
-
