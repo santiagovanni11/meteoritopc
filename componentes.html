@@ -9,13 +9,57 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   />
+  <style>
+    #metodos-pago {
+      max-width: 500px;
+      margin: 20px auto 40px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 16px;
+      color: #333;
+    }
+    body.dark-mode #metodos-pago {
+      background: #1f1f1f;
+      color: #f1f1f1;
+    }
+    #metodos-pago h3 {
+      margin-bottom: 15px;
+      text-align: center;
+      font-size: 22px;
+      color: #222;
+    }
+    body.dark-mode #metodos-pago h3 {
+      color: #fff;
+    }
+    #metodos-pago ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    #metodos-pago li {
+      margin-bottom: 12px;
+      padding-left: 25px;
+      position: relative;
+    }
+    #metodos-pago li::before {
+      content: "\f00c"; /* FontAwesome check */
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #27ae60;
+    }
+  </style>
 </head>
 <body>
   <header>Meteoritopc.com</header>
   <nav>
     <a href="index.html">Inicio</a>
     <a href="pc.html">PC Armadas</a>
-    <a href="componentes.html">Componentes</a>
+    <a href="componentes.html" class="activo">Componentes</a>
     <a href="monitores.html">Monitores</a>
     <a href="contacto.html">Contacto</a>
   </nav>
@@ -79,34 +123,6 @@
     </div>
   </section>
 
-  <h2 class="titulo-seccion">Monitores</h2>
-
-  <section class="catalogo" id="catalogo-monitores">
-    <div class="producto" data-nombre="Samsung Odyssey G5 27''" data-precio="85000">
-      <!-- Imagen eliminada -->
-      <h3>Samsung Odyssey G5 27''</h3>
-      <p>144Hz, Curvo, 1ms</p>
-      <p><strong>$85,000 ARS</strong></p>
-      <button class="boton-comprar">Agregar al carrito</button>
-    </div>
-
-    <div class="producto" data-nombre="LG UltraGear 24GL600F" data-precio="45000">
-      <!-- Imagen eliminada -->
-      <h3>LG UltraGear 24GL600F</h3>
-      <p>144Hz, TN, 1ms</p>
-      <p><strong>$45,000 ARS</strong></p>
-      <button class="boton-comprar">Agregar al carrito</button>
-    </div>
-
-    <div class="producto" data-nombre="AOC 24G2 24''" data-precio="55000">
-      <!-- Imagen eliminada -->
-      <h3>AOC 24G2 24''</h3>
-      <p>144Hz, IPS, 1ms</p>
-      <p><strong>$55,000 ARS</strong></p>
-      <button class="boton-comprar">Agregar al carrito</button>
-    </div>
-  </section>
-
   <section id="carrito">
     <h2>Tu Carrito</h2>
     <ul id="lista-carrito"></ul>
@@ -115,6 +131,15 @@
     <button id="comprar-carrito">
       <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Comprar por WhatsApp
     </button>
+  </section>
+
+  <section id="metodos-pago">
+    <h3>Métodos de Pago Disponibles</h3>
+    <ul>
+      <li>Tarjeta de crédito en hasta 12 cuotas sin interés</li>
+      <li>Transferencia bancaria por Mercado Pago</li>
+      <li>Pago en efectivo en nuestras sucursales</li>
+    </ul>
   </section>
 
   <footer>
@@ -136,6 +161,62 @@
     <i class="fas fa-moon"></i>
   </button>
 
-  <script src="carrito.js"></script>
-</body>
-</html>
+  <script>
+    const botonesComprar = document.querySelectorAll('.boton-comprar');
+    const listaCarrito = document.getElementById('lista-carrito');
+    const totalCarrito = document.getElementById('total');
+    const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
+    const comprarCarritoBtn = document.getElementById('comprar-carrito');
+    const toggleDark = document.getElementById('toggle-dark');
+
+    let carrito = [];
+
+    function renderCarrito() {
+      listaCarrito.innerHTML = '';
+      let total = 0;
+
+      carrito.forEach((producto, index) => {
+        const li = document.createElement('li');
+        li.textContent = `${producto.nombre} - $${producto.precio.toLocaleString('es-AR')}`;
+        const btnEliminar = document.createElement('button');
+        btnEliminar.textContent = 'X';
+        btnEliminar.style.marginLeft = '10px';
+        btnEliminar.style.background = '#e65c00';
+        btnEliminar.style.color = '#fff';
+        btnEliminar.style.border = 'none';
+        btnEliminar.style.borderRadius = '4px';
+        btnEliminar.style.cursor = 'pointer';
+        btnEliminar.style.padding = '2px 6px';
+        btnEliminar.title = 'Quitar producto';
+
+        btnEliminar.addEventListener('click', () => {
+          carrito.splice(index, 1);
+          renderCarrito();
+        });
+
+        li.appendChild(btnEliminar);
+        listaCarrito.appendChild(li);
+        total += producto.precio;
+      });
+
+      totalCarrito.textContent = total.toLocaleString('es-AR');
+    }
+
+    botonesComprar.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const productoDiv = btn.parentElement;
+        const nombre = productoDiv.getAttribute('data-nombre');
+        const precio = parseFloat(productoDiv.getAttribute('data-precio'));
+
+        carrito.push({ nombre, precio });
+        renderCarrito();
+      });
+    });
+
+    vaciarCarritoBtn.addEventListener('click', () => {
+      carrito = [];
+      renderCarrito();
+    });
+
+    comprarCarritoBtn.addEventListener('click', () => {
+      if (carrito.length === 0)

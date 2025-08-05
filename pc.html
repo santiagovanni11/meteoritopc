@@ -9,12 +9,57 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   />
+  <style>
+    /* Métodos de pago estilos */
+    #metodos-pago {
+      max-width: 500px;
+      margin: 20px auto 40px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 16px;
+      color: #333;
+    }
+    body.dark-mode #metodos-pago {
+      background: #1f1f1f;
+      color: #f1f1f1;
+    }
+    #metodos-pago h3 {
+      margin-bottom: 15px;
+      text-align: center;
+      font-size: 22px;
+      color: #222;
+    }
+    body.dark-mode #metodos-pago h3 {
+      color: #fff;
+    }
+    #metodos-pago ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    #metodos-pago li {
+      margin-bottom: 12px;
+      padding-left: 25px;
+      position: relative;
+    }
+    #metodos-pago li::before {
+      content: "\f00c"; /* FontAwesome check */
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #27ae60;
+    }
+  </style>
 </head>
 <body>
   <header>Meteoritopc.com</header>
   <nav>
     <a href="index.html">Inicio</a>
-    <a href="pc.html">PC Armadas</a>
+    <a href="pc.html" class="activo">PC Armadas</a>
     <a href="componentes.html">Componentes</a>
     <a href="monitores.html">Monitores</a>
     <a href="contacto.html">Contacto</a>
@@ -22,37 +67,20 @@
 
   <h2 class="titulo-seccion">PC Armadas</h2>
 
-  <section class="catalogo">
-    <div class="producto" data-nombre="PC Gamer AMD Ryzen 7" data-precio="320000">
-      <img
-        src="https://cdn1.coppel.com/images/catalog/pm/1207055-1.jpg"
-        alt="PC Gamer AMD Ryzen 7"
-      />
-      <h3>PC Gamer AMD Ryzen 7</h3>
-      <p>AMD Ryzen 7 5700X, RTX 4060 8GB, 16GB RAM, SSD 1TB</p>
-      <p><strong>$320,000 ARS</strong></p>
+  <section class="catalogo" id="catalogo-pc">
+    <div class="producto" data-nombre="PC Gamer Meteoro" data-precio="360000">
+      <img src="https://i.imgur.com/qYxnwYP.jpg" alt="PC Gamer Meteoro" />
+      <h3>PC Gamer Meteoro</h3>
+      <p>Ryzen 7 5700X | RTX 4060 | 16GB RAM</p>
+      <p><strong>$360,000 ARS</strong></p>
       <button class="boton-comprar">Agregar al carrito</button>
     </div>
 
-    <div class="producto" data-nombre="PC Oficina Intel i5" data-precio="155000">
-      <img
-        src="https://cdn1.coppel.com/images/catalog/pm/1207065-1.jpg"
-        alt="PC Oficina Intel i5"
-      />
-      <h3>PC Oficina Intel i5</h3>
-      <p>Intel Core i5, 8GB RAM, SSD 500GB</p>
-      <p><strong>$155,000 ARS</strong></p>
-      <button class="boton-comprar">Agregar al carrito</button>
-    </div>
-
-    <div class="producto" data-nombre="PC Diseño i7 12700K" data-precio="430000">
-      <img
-        src="https://cdn1.coppel.com/images/catalog/pm/1207080-1.jpg"
-        alt="PC Diseño i7 12700K"
-      />
-      <h3>PC Diseño i7 12700K</h3>
-      <p>Intel i7 12700K, RTX 4070, 32GB RAM, SSD 2TB</p>
-      <p><strong>$430,000 ARS</strong></p>
+    <div class="producto" data-nombre="PC Gamer Pro" data-precio="540000">
+      <img src="https://i.imgur.com/ePzOE43.jpg" alt="PC Gamer Pro" />
+      <h3>PC Gamer Pro</h3>
+      <p>Intel i7 12700F | RTX 4070 | 32GB RAM</p>
+      <p><strong>$540,000 ARS</strong></p>
       <button class="boton-comprar">Agregar al carrito</button>
     </div>
   </section>
@@ -65,6 +93,15 @@
     <button id="comprar-carrito">
       <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Comprar por WhatsApp
     </button>
+  </section>
+
+  <section id="metodos-pago">
+    <h3>Métodos de Pago Disponibles</h3>
+    <ul>
+      <li>Tarjeta de crédito en hasta 12 cuotas sin interés</li>
+      <li>Transferencia bancaria por Mercado Pago</li>
+      <li>Pago en efectivo en nuestras sucursales</li>
+    </ul>
   </section>
 
   <footer>
@@ -86,6 +123,91 @@
     <i class="fas fa-moon"></i>
   </button>
 
-  <script src="carrito.js"></script>
+  <script>
+    const botonesComprar = document.querySelectorAll('.boton-comprar');
+    const listaCarrito = document.getElementById('lista-carrito');
+    const totalCarrito = document.getElementById('total');
+    const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
+    const comprarCarritoBtn = document.getElementById('comprar-carrito');
+    const toggleDark = document.getElementById('toggle-dark');
+
+    let carrito = [];
+
+    function renderCarrito() {
+      listaCarrito.innerHTML = '';
+      let total = 0;
+
+      carrito.forEach((producto, index) => {
+        const li = document.createElement('li');
+        li.textContent = `${producto.nombre} - $${producto.precio.toLocaleString('es-AR')}`;
+        const btnEliminar = document.createElement('button');
+        btnEliminar.textContent = 'X';
+        btnEliminar.style.marginLeft = '10px';
+        btnEliminar.style.background = '#e65c00';
+        btnEliminar.style.color = '#fff';
+        btnEliminar.style.border = 'none';
+        btnEliminar.style.borderRadius = '4px';
+        btnEliminar.style.cursor = 'pointer';
+        btnEliminar.style.padding = '2px 6px';
+        btnEliminar.title = 'Quitar producto';
+
+        btnEliminar.addEventListener('click', () => {
+          carrito.splice(index, 1);
+          renderCarrito();
+        });
+
+        li.appendChild(btnEliminar);
+        listaCarrito.appendChild(li);
+        total += producto.precio;
+      });
+
+      totalCarrito.textContent = total.toLocaleString('es-AR');
+    }
+
+    botonesComprar.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const productoDiv = btn.parentElement;
+        const nombre = productoDiv.getAttribute('data-nombre');
+        const precio = parseFloat(productoDiv.getAttribute('data-precio'));
+
+        carrito.push({ nombre, precio });
+        renderCarrito();
+      });
+    });
+
+    vaciarCarritoBtn.addEventListener('click', () => {
+      carrito = [];
+      renderCarrito();
+    });
+
+    comprarCarritoBtn.addEventListener('click', () => {
+      if (carrito.length === 0) {
+        alert('Tu carrito está vacío.');
+        return;
+      }
+
+      const numeroWhatsApp = '5491123456789'; // Cambiar por tu número real
+
+      let mensaje = 'Hola, quiero comprar estos productos:%0A';
+      carrito.forEach((p) => {
+        mensaje += `- ${p.nombre}: $${p.precio.toLocaleString('es-AR')} ARS%0A`;
+      });
+      mensaje += `Total: $${carrito.reduce((acc, p) => acc + p.precio, 0).toLocaleString('es-AR')} ARS`;
+
+      const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
+      window.open(urlWhatsApp, '_blank');
+    });
+
+    toggleDark.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('modoOscuro', document.body.classList.contains('dark-mode'));
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('modoOscuro') === 'true') {
+        document.body.classList.add('dark-mode');
+      }
+    });
+  </script>
 </body>
 </html>
