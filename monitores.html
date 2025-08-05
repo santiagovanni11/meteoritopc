@@ -49,16 +49,10 @@
     <h2>Tu Carrito</h2>
     <ul id="lista-carrito"></ul>
     <p>Total: $<span id="total">0</span> ARS</p>
-
-    <fieldset class="metodos-pago">
-      <legend>Métodos de pago</legend>
-      <label><input type="radio" name="pago" value="Tarjeta Crédito 12 cuotas" checked /> Tarjeta Crédito (12 cuotas)</label><br />
-      <label><input type="radio" name="pago" value="Transferencia Mercado Pago" /> Transferencia Mercado Pago</label><br />
-      <label><input type="radio" name="pago" value="Efectivo" /> Efectivo</label>
-    </fieldset>
-
     <button id="vaciar-carrito">Vaciar carrito</button>
-    <button id="finalizar-compra">Finalizar compra</button>
+    <button id="finalizar-compra" style="background:#008CBA; margin-top:10px;">
+      <i class="fas fa-credit-card" style="margin-right:8px;"></i> Finalizar compra
+    </button>
   </section>
 
   <footer>
@@ -83,4 +77,6 @@
   <script src="carrito.js"></script>
 </body>
 </html>
+
+
 
