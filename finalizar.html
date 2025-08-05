@@ -1,67 +1,65 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Finalizar Compra - Meteoritopc</title>
   <link rel="stylesheet" href="style.css" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  />
-  <style>
-    form {
-      max-width: 600px;
-      margin: 30px auto;
-      background: #fff;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <header>Meteoritopc.com</header>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="pc.html">PC Armadas</a>
+    <a href="componentes.html">Componentes</a>
+    <a href="monitores.html">Monitores</a>
+    <a href="contacto.html">Contacto</a>
+  </nav>
+
+  <section id="carrito">
+    <h2>Tu Carrito</h2>
+    <ul id="lista-carrito"></ul>
+    <p>Total: $<span id="total">0</span> ARS</p>
+  </section>
+
+  <form id="checkout-form">
+    <h2>Elegí tu método de pago</h2>
+    <label for="metodo">Método:</label>
+    <select id="metodo" onchange="mostrarFormulario()">
+      <option value="transferencia">Transferencia (Mercado Pago)</option>
+      <option value="tarjeta">Tarjeta de crédito</option>
+      <option value="efectivo">Efectivo</option>
+    </select>
+
+    <div id="form-tarjeta" style="display:none;">
+      <label>Número de tarjeta:</label><input type="text" placeholder="0000 0000 0000 0000" />
+      <label>Vencimiento:</label><input type="text" placeholder="MM/AA" />
+      <label>Código de seguridad:</label><input type="text" placeholder="123" />
+    </div>
+
+    <div id="info-efectivo" style="display:none;">
+      <p>Coordiná por WhatsApp o en tienda física.</p>
+    </div>
+
+    <button type="submit" class="boton-comprar">Finalizar compra</button>
+  </form>
+
+  <a href="https://wa.me/5491123456789" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+  <button id="toggle-dark"><i class="fas fa-moon"></i></button>
+
+  <script src="carrito.js"></script>
+  <script>
+    function mostrarFormulario(){
+      const m = document.getElementById('metodo').value;
+      document.getElementById('form-tarjeta').style.display = m==='tarjeta'? 'block':'none';
+      document.getElementById('info-efectivo').style.display = m==='efectivo'? 'block':'none';
     }
-    body.dark-mode form {
-      background: #1f1f1f;
-      color: #eee;
-    }
-    form h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 28px;
-    }
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 18px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-    body.dark-mode input, body.dark-mode select, body.dark-mode textarea {
-      background: #2a2a2a;
-      border: 1px solid #555;
-      color: #eee;
-    }
-    button[type="submit"] {
-      background: #008cba;
-      color: white;
-      border: none;
-      padding: 15px;
-      width: 100%;
-      font-size: 18px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-    button[type="submit"]:hover {
-      background: #006b8a;
-    }
-    #resumen-compra {
-      max-width: 600px;
-      margin: 20px auto
+    document.getElementById('checkout-form').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Gracias por tu compra. Pronto nos contactamos.');
+      localStorage.removeItem('carrito');
+      window.location.href='index.html';
+    });
+  </script>
+</body>
+</html>
