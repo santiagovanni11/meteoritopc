@@ -1,54 +1,95 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Componentes - Meteoritopc</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meteoritopc - Componentes</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
 </head>
 <body>
-  <header>
-    <h1>Componentes</h1>
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="pc.html">PC Armadas</a>
-      <a href="monitores.html">Monitores</a>
-      <a href="carrito.html">Carrito</a>
-    </nav>
-  </header>
+  <header>Meteoritopc.com</header>
 
-  <main>
-    <section class="productos">
-      <div class="producto" data-nombre="Procesador Ryzen 5" data-precio="150000">
-        <img src="img/ryzen5.jpg" alt="Procesador Ryzen 5">
-        <h3>Procesador Ryzen 5</h3>
-        <p>$150.000</p>
-        <button class="boton-comprar">Agregar al carrito</button>
-      </div>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="pc.html">PC Armadas</a>
+    <a href="componentes.html" class="activo">Componentes</a>
+    <a href="monitores.html">Monitores</a>
+    <a href="contacto.html">Contacto</a>
+  </nav>
 
-      <div class="producto" data-nombre="Motherboard B550" data-precio="90000">
-        <img src="img/motherboard.jpg" alt="Motherboard B550">
-        <h3>Motherboard B550</h3>
-        <p>$90.000</p>
-        <button class="boton-comprar">Agregar al carrito</button>
-      </div>
+  <h2 class="titulo-seccion">Componentes</h2>
 
-      <div class="producto" data-nombre="Memoria RAM 16GB" data-precio="60000">
-        <img src="img/ram.jpg" alt="Memoria RAM 16GB">
-        <h3>Memoria RAM 16GB</h3>
-        <p>$60.000</p>
-        <button class="boton-comprar">Agregar al carrito</button>
-      </div>
-    </section>
-
-    <div class="finalizar-container">
-      <button id="finalizar-compra" class="boton-finalizar">Finalizar compra</button>
+  <section class="catalogo" id="catalogo-componentes">
+    <div class="producto" data-nombre="Procesador Ryzen 5" data-precio="150000">
+      <img src="img/ryzen5.jpg" alt="Procesador Ryzen 5">
+      <h3>Procesador Ryzen 5</h3>
+      <p>$150.000</p>
+      <button class="boton-comprar">Agregar al carrito</button>
     </div>
-  </main>
+
+    <div class="producto" data-nombre="Motherboard B550" data-precio="90000">
+      <img src="img/motherboard.jpg" alt="Motherboard B550">
+      <h3>Motherboard B550</h3>
+      <p>$90.000</p>
+      <button class="boton-comprar">Agregar al carrito</button>
+    </div>
+
+    <div class="producto" data-nombre="Memoria RAM 16GB" data-precio="60000">
+      <img src="img/ram.jpg" alt="Memoria RAM 16GB">
+      <h3>Memoria RAM 16GB</h3>
+      <p>$60.000</p>
+      <button class="boton-comprar">Agregar al carrito</button>
+    </div>
+  </section>
+
+  <section id="carrito">
+    <h2>Tu Carrito</h2>
+    <ul id="lista-carrito"></ul>
+    <p>Total: $<span id="total">0</span> ARS</p>
+    <button id="vaciar-carrito">Vaciar carrito</button>
+    <button id="finalizar-compra" class="boton-finalizar">
+      <i class="fas fa-credit-card"></i> Finalizar compra
+    </button>
+
+    <div id="metodos-pago" style="display:none; margin-top: 20px;">
+      <h3>Métodos de Pago</h3>
+      <ul style="list-style: none; padding-left: 0;">
+        <li><i class="fas fa-university"></i> Transferencia Bancaria</li>
+        <li><i class="fas fa-wallet"></i> Mercado Pago</li>
+        <li><i class="fas fa-credit-card"></i> Tarjeta de Crédito</li>
+        <li><i class="fas fa-money-bill-wave"></i> Efectivo</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Meteoritopc.com - Todos los derechos reservados
+  </footer>
+
+  <!-- Botón flotante WhatsApp -->
+  <a href="https://wa.me/5491123456789" target="_blank" class="whatsapp-float" aria-label="WhatsApp" title="Chatear por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Botón Toggle Dark Mode -->
+  <button id="toggle-dark" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro">
+    <i class="fas fa-moon"></i>
+  </button>
 
   <script src="carrito.js"></script>
   <script>
     document.getElementById("finalizar-compra").addEventListener("click", function () {
-      window.location.href = "finalizar.html";
+      const metodosPago = document.getElementById("metodos-pago");
+      if (metodosPago.style.display === "none") {
+        metodosPago.style.display = "block";
+        metodosPago.scrollIntoView({ behavior: "smooth" });
+      } else {
+        metodosPago.style.display = "none";
+      }
     });
   </script>
 </body>
