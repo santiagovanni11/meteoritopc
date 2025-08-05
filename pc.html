@@ -53,6 +53,17 @@
       top: 0;
       color: #27ae60;
     }
+
+    /* Ajuste para catálogo PC sin imágenes */
+    #catalogo-pc .producto {
+      text-align: center;
+    }
+
+    #catalogo-pc .producto h3,
+    #catalogo-pc .producto p,
+    #catalogo-pc .producto strong {
+      margin: 8px 0;
+    }
   </style>
 </head>
 <body>
@@ -69,7 +80,6 @@
 
   <section class="catalogo" id="catalogo-pc">
     <div class="producto" data-nombre="PC Gamer Meteoro" data-precio="360000">
-      <img src="https://i.imgur.com/qYxnwYP.jpg" alt="PC Gamer Meteoro" />
       <h3>PC Gamer Meteoro</h3>
       <p>Ryzen 7 5700X | RTX 4060 | 16GB RAM</p>
       <p><strong>$360,000 ARS</strong></p>
@@ -77,10 +87,30 @@
     </div>
 
     <div class="producto" data-nombre="PC Gamer Pro" data-precio="540000">
-      <img src="https://i.imgur.com/ePzOE43.jpg" alt="PC Gamer Pro" />
       <h3>PC Gamer Pro</h3>
       <p>Intel i7 12700F | RTX 4070 | 32GB RAM</p>
       <p><strong>$540,000 ARS</strong></p>
+      <button class="boton-comprar">Agregar al carrito</button>
+    </div>
+
+    <div class="producto" data-nombre="PC Mega Gaming" data-precio="2000000">
+      <h3>PC Mega Gaming</h3>
+      <p>Intel i9 14900K | RTX 4090 | 64GB RAM</p>
+      <p><strong>$2,000,000 ARS</strong></p>
+      <button class="boton-comprar">Agregar al carrito</button>
+    </div>
+
+    <div class="producto" data-nombre="PC Económica" data-precio="200000">
+      <h3>PC Económica</h3>
+      <p>Ryzen 3 4100 | Radeon Vega | 8GB RAM</p>
+      <p><strong>$200,000 ARS</strong></p>
+      <button class="boton-comprar">Agregar al carrito</button>
+    </div>
+
+    <div class="producto" data-nombre="PC Competitiva" data-precio="1300000">
+      <h3>PC Competitiva</h3>
+      <p>Ryzen 7 7800X3D | RTX 4080 | 32GB RAM</p>
+      <p><strong>$1,300,000 ARS</strong></p>
       <button class="boton-comprar">Agregar al carrito</button>
     </div>
   </section>
@@ -211,3 +241,5 @@
   </script>
 </body>
 </html>
+
+
