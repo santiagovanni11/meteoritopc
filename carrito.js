@@ -1,5 +1,4 @@
-// carrito.js - script compartido para todas las páginas con carrito
-
+// carrito.js
 const botonesComprar = document.querySelectorAll('.boton-comprar');
 const listaCarrito = document.getElementById('lista-carrito');
 const totalCarrito = document.getElementById('total');
@@ -9,92 +8,63 @@ const toggleDark = document.getElementById('toggle-dark');
 
 let carrito = [];
 
-// Cargar carrito desde localStorage al cargar página
 document.addEventListener('DOMContentLoaded', () => {
-  const carritoGuardado = localStorage.getItem('carrito');
-  if (carritoGuardado) {
-    carrito = JSON.parse(carritoGuardado);
-    renderCarrito();
-  }
+  const guardado = localStorage.getItem('carrito');
+  carrito = guardado ? JSON.parse(guardado) : [];
+  renderCarrito();
   if (localStorage.getItem('modoOscuro') === 'true') {
     document.body.classList.add('dark-mode');
   }
 });
 
-// Renderiza el carrito en pantalla
 function renderCarrito() {
   listaCarrito.innerHTML = '';
   let total = 0;
-
-  carrito.forEach((producto, index) => {
+  carrito.forEach((p, i) => {
     const li = document.createElement('li');
-    li.textContent = `${producto.nombre} - $${producto.precio.toLocaleString('es-AR')}`;
-    
-    // Botón para eliminar producto
-    const btnEliminar = document.createElement('button');
-    btnEliminar.textContent = 'X';
-    btnEliminar.style.marginLeft = '10px';
-    btnEliminar.style.background = '#e65c00';
-    btnEliminar.style.color = '#fff';
-    btnEliminar.style.border = 'none';
-    btnEliminar.style.borderRadius = '4px';
-    btnEliminar.style.cursor = 'pointer';
-    btnEliminar.style.padding = '2px 6px';
-    btnEliminar.title = 'Quitar producto';
-
-    btnEliminar.addEventListener('click', () => {
-      carrito.splice(index, 1);
-      guardarCarrito();
-      renderCarrito();
+    li.textContent = `${p.nombre} – $${p.precio.toLocaleString('es-AR')}`;
+    const btnX = document.createElement('button');
+    btnX.textContent = 'X'; btnX.style.marginLeft = '10px';
+    btnX.style.background = '#e65c00'; btnX.style.color = '#fff';
+    btnX.style.border = 'none'; btnX.style.borderRadius = '4px';
+    btnX.style.cursor = 'pointer'; btnX.style.padding = '2px 6px';
+    btnX.title = 'Quitar';
+    btnX.addEventListener('click', () => {
+      carrito.splice(i,1);
+      guardarCarrito(); renderCarrito();
     });
-
-    li.appendChild(btnEliminar);
+    li.appendChild(btnX);
     listaCarrito.appendChild(li);
-
-    total += producto.precio;
+    total += p.precio;
   });
-
   totalCarrito.textContent = total.toLocaleString('es-AR');
-
   guardarCarrito();
 }
+function guardarCarrito() { localStorage.setItem('carrito', JSON.stringify(carrito)); }
 
-function guardarCarrito() {
-  localStorage.setItem('carrito', JSON.stringify(carrito));
-}
-
-// Agregar producto al carrito
-botonesComprar.forEach((btn) => {
+botonesComprar.forEach(btn => {
   btn.addEventListener('click', () => {
-    const productoDiv = btn.parentElement;
-    const nombre = productoDiv.getAttribute('data-nombre');
-    const precio = parseFloat(productoDiv.getAttribute('data-precio'));
-
-    carrito.push({ nombre, precio });
+    const prod = btn.parentElement;
+    const nombre = prod.getAttribute('data-nombre');
+    const precio = parseFloat(prod.getAttribute('data-precio'));
+    carrito.push({nombre, precio});
     guardarCarrito();
     renderCarrito();
   });
 });
 
-// Vaciar carrito
-vaciarCarritoBtn.addEventListener('click', () => {
+vaciarCarritoBtn?.addEventListener('click', () => {
   carrito = [];
   guardarCarrito();
   renderCarrito();
 });
 
-// Finalizar compra: redirigir a finalizar.html si hay productos
-finalizarCompraBtn.addEventListener('click', () => {
-  if (carrito.length === 0) {
-    alert('Tu carrito está vacío.');
-    return;
-  }
-  window.location.href = 'finalizar.html';
+finalizarCompraBtn?.addEventListener('click', () => {
+  if (!carrito.length) alert('Tu carrito está vacío.');
+  else window.location.href = 'finalizar.html';
 });
 
-// Dark Mode toggle
 toggleDark.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
   localStorage.setItem('modoOscuro', document.body.classList.contains('dark-mode'));
 });
-
