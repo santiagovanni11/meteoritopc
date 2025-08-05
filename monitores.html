@@ -1,36 +1,79 @@
-<h2 class="titulo-seccion">Monitores</h2>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meteoritopc - Monitores</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+</head>
+<body>
+  <header>Meteoritopc.com</header>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="pc.html">PC Armadas</a>
+    <a href="componentes.html">Componentes</a>
+    <a href="monitores.html">Monitores</a>
+    <a href="contacto.html">Contacto</a>
+  </nav>
 
-<section class="catalogo" id="catalogo-monitores">
-  <div class="producto" data-nombre="Samsung Odyssey G5 27''" data-precio="85000">
-    <img
-      src="https://images.samsung.com/is/image/samsung/ar-odyssey-g5-lc27g55tqwrxzn-frontblack-323177187?$720_576_PNG$"
-      alt="Samsung Odyssey G5 27''"
-    />
-    <h3>Samsung Odyssey G5 27''</h3>
-    <p>144Hz, Curvo, 1ms</p>
-    <p><strong>$85,000 ARS</strong></p>
-    <button class="boton-comprar">Agregar al carrito</button>
-  </div>
+  <h2 class="titulo-seccion">Monitores</h2>
 
-  <div class="producto" data-nombre="LG UltraGear 24GL600F" data-precio="45000">
-    <img
-      src="https://www.lg.com/us/images/monitors/md05800258/gallery/24GL600F-B-02.jpg"
-      alt="LG UltraGear 24GL600F"
-    />
-    <h3>LG UltraGear 24GL600F</h3>
-    <p>144Hz, TN, 1ms</p>
-    <p><strong>$45,000 ARS</strong></p>
-    <button class="boton-comprar">Agregar al carrito</button>
-  </div>
+  <section class="catalogo" id="catalogo-monitores">
+    <div class="producto" data-nombre="Samsung Odyssey G5 27''" data-precio="85000">
+      <h3>Samsung Odyssey G5 27''</h3>
+      <p>144Hz, Curvo, 1ms</p>
+      <p><strong>$85,000 ARS</strong></p>
+      <button class="boton-comprar">Agregar al carrito</button>
+    </div>
 
-  <div class="producto" data-nombre="AOC 24G2 24''" data-precio="55000">
-    <img
-      src="https://www.aoc.com/sites/default/files/24g2-front_0.png"
-      alt="AOC 24G2 24''"
-    />
-    <h3>AOC 24G2 24''</h3>
-    <p>144Hz, IPS, 1ms</p>
-    <p><strong>$55,000 ARS</strong></p>
-    <button class="boton-comprar">Agregar al carrito</button>
-  </div>
-</section>
+    <div class="producto" data-nombre="LG UltraGear 24GL600F" data-precio="45000">
+      <h3>LG UltraGear 24GL600F</h3>
+      <p>144Hz, TN, 1ms</p>
+      <p><strong>$45,000 ARS</strong></p>
+      <button class="boton-comprar">Agregar al carrito</button>
+    </div>
+
+    <div class="producto" data-nombre="AOC 24G2 24''" data-precio="55000">
+      <h3>AOC 24G2 24''</h3>
+      <p>144Hz, IPS, 1ms</p>
+      <p><strong>$55,000 ARS</strong></p>
+      <button class="boton-comprar">Agregar al carrito</button>
+    </div>
+  </section>
+
+  <section id="carrito">
+    <h2>Tu Carrito</h2>
+    <ul id="lista-carrito"></ul>
+    <p>Total: $<span id="total">0</span> ARS</p>
+    <button id="vaciar-carrito">Vaciar carrito</button>
+    <button id="comprar-carrito">
+      <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Comprar por WhatsApp
+    </button>
+  </section>
+
+  <footer>
+    &copy; 2025 Meteoritopc.com - Todos los derechos reservados
+  </footer>
+
+  <!-- Botón flotante WhatsApp -->
+  <a
+    href="https://wa.me/5491123456789"
+    target="_blank"
+    class="whatsapp-float"
+    aria-label="WhatsApp"
+    title="Chatear por WhatsApp"
+    ><i class="fab fa-whatsapp"></i
+  ></a>
+
+  <!-- Botón Toggle Dark Mode -->
+  <button id="toggle-dark" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <script src="carrito.js"></script>
+</body>
+</html>
