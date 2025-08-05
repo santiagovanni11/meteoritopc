@@ -11,8 +11,12 @@
   />
 </head>
 <body>
-  <header>Meteoritopc.com</header>
-  <nav>
+
+  <header class="main-header">
+    <h1>Meteoritopc.com</h1>
+  </header>
+
+  <nav class="main-nav">
     <a href="index.html" class="activo">Inicio</a>
     <a href="pc.html">PC Armadas</a>
     <a href="componentes.html">Componentes</a>
@@ -21,12 +25,12 @@
   </nav>
 
   <section class="inicio-banner">
-    <h1>Bienvenido a Meteoritopc</h1>
+    <h2>Bienvenido a Meteoritopc</h2>
     <p>Las mejores PC y componentes para gamers y profesionales</p>
-    <a href="pc.html">Ver PC Armadas</a>
+    <a class="boton-comprar" href="pc.html">Ver PC Armadas</a>
   </section>
 
-  <footer>
+  <footer class="main-footer">
     &copy; 2025 Meteoritopc.com - Todos los derechos reservados
   </footer>
 
@@ -37,10 +41,11 @@
     class="whatsapp-float"
     aria-label="WhatsApp"
     title="Chatear por WhatsApp"
-    ><i class="fab fa-whatsapp"></i
-  ></a>
+  >
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
-  <!-- Botón Toggle Dark Mode -->
+  <!-- Botón Toggle Dark Mode (puedes agregarle funcionalidad luego) -->
   <button id="toggle-dark" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro">
     <i class="fas fa-moon"></i>
   </button>
@@ -48,4 +53,3 @@
   <script src="carrito.js"></script>
 </body>
 </html>
-
