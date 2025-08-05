@@ -57,6 +57,16 @@
     /* Ajuste para catálogo PC sin imágenes */
     #catalogo-pc .producto {
       text-align: center;
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 15px;
+      border-radius: 10px;
+      background: #fafafa;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: box-shadow 0.3s ease;
+    }
+    #catalogo-pc .producto:hover {
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
     #catalogo-pc .producto h3,
@@ -64,11 +74,82 @@
     #catalogo-pc .producto strong {
       margin: 8px 0;
     }
+
+    .boton-comprar {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .boton-comprar:hover {
+      background-color: #0056b3;
+    }
+
+    /* Carrito */
+    #carrito {
+      max-width: 600px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    #carrito h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    #lista-carrito {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 15px;
+    }
+    #lista-carrito li {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #vaciar-carrito,
+    #finalizar-compra {
+      cursor: pointer;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    #vaciar-carrito {
+      background-color: #dc3545;
+      color: white;
+      margin-right: 10px;
+      transition: background-color 0.3s ease;
+    }
+    #vaciar-carrito:hover {
+      background-color: #a71d2a;
+    }
+    #finalizar-compra {
+      background-color: #008CBA;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    #finalizar-compra:hover {
+      background-color: #006a8d;
+    }
+
   </style>
 </head>
 <body>
-  <header>Meteoritopc.com</header>
-  <nav>
+
+  <header class="main-header">
+    <h1>Meteoritopc.com</h1>
+  </header>
+
+  <nav class="main-nav">
     <a href="index.html">Inicio</a>
     <a href="pc.html" class="activo">PC Armadas</a>
     <a href="componentes.html">Componentes</a>
@@ -76,65 +157,67 @@
     <a href="contacto.html">Contacto</a>
   </nav>
 
-  <h2 class="titulo-seccion">PC Armadas</h2>
+  <main>
+    <h2 class="titulo-seccion">PC Armadas</h2>
 
-  <section class="catalogo" id="catalogo-pc">
-    <div class="producto" data-nombre="PC Gamer Meteoro" data-precio="360000">
-      <h3>PC Gamer Meteoro</h3>
-      <p>Ryzen 7 5700X | RTX 4060 | 16GB RAM</p>
-      <p><strong>$360,000 ARS</strong></p>
-      <button class="boton-comprar">Agregar al carrito</button>
-    </div>
+    <section class="catalogo" id="catalogo-pc">
+      <article class="producto" data-nombre="PC Gamer Meteoro" data-precio="360000">
+        <h3>PC Gamer Meteoro</h3>
+        <p>Ryzen 7 5700X | RTX 4060 | 16GB RAM</p>
+        <p><strong>$360,000 ARS</strong></p>
+        <button class="boton-comprar">Agregar al carrito</button>
+      </article>
 
-    <div class="producto" data-nombre="PC Gamer Pro" data-precio="540000">
-      <h3>PC Gamer Pro</h3>
-      <p>Intel i7 12700F | RTX 4070 | 32GB RAM</p>
-      <p><strong>$540,000 ARS</strong></p>
-      <button class="boton-comprar">Agregar al carrito</button>
-    </div>
+      <article class="producto" data-nombre="PC Gamer Pro" data-precio="540000">
+        <h3>PC Gamer Pro</h3>
+        <p>Intel i7 12700F | RTX 4070 | 32GB RAM</p>
+        <p><strong>$540,000 ARS</strong></p>
+        <button class="boton-comprar">Agregar al carrito</button>
+      </article>
 
-    <div class="producto" data-nombre="PC Mega Gaming" data-precio="2000000">
-      <h3>PC Mega Gaming</h3>
-      <p>Intel i9 14900K | RTX 4090 | 64GB RAM</p>
-      <p><strong>$2,000,000 ARS</strong></p>
-      <button class="boton-comprar">Agregar al carrito</button>
-    </div>
+      <article class="producto" data-nombre="PC Mega Gaming" data-precio="2000000">
+        <h3>PC Mega Gaming</h3>
+        <p>Intel i9 14900K | RTX 4090 | 64GB RAM</p>
+        <p><strong>$2,000,000 ARS</strong></p>
+        <button class="boton-comprar">Agregar al carrito</button>
+      </article>
 
-    <div class="producto" data-nombre="PC Económica" data-precio="200000">
-      <h3>PC Económica</h3>
-      <p>Ryzen 3 4100 | Radeon Vega | 8GB RAM</p>
-      <p><strong>$200,000 ARS</strong></p>
-      <button class="boton-comprar">Agregar al carrito</button>
-    </div>
+      <article class="producto" data-nombre="PC Económica" data-precio="200000">
+        <h3>PC Económica</h3>
+        <p>Ryzen 3 4100 | Radeon Vega | 8GB RAM</p>
+        <p><strong>$200,000 ARS</strong></p>
+        <button class="boton-comprar">Agregar al carrito</button>
+      </article>
 
-    <div class="producto" data-nombre="PC Competitiva" data-precio="1300000">
-      <h3>PC Competitiva</h3>
-      <p>Ryzen 7 7800X3D | RTX 4080 | 32GB RAM</p>
-      <p><strong>$1,300,000 ARS</strong></p>
-      <button class="boton-comprar">Agregar al carrito</button>
-    </div>
-  </section>
+      <article class="producto" data-nombre="PC Competitiva" data-precio="1300000">
+        <h3>PC Competitiva</h3>
+        <p>Ryzen 7 7800X3D | RTX 4080 | 32GB RAM</p>
+        <p><strong>$1,300,000 ARS</strong></p>
+        <button class="boton-comprar">Agregar al carrito</button>
+      </article>
+    </section>
 
-  <section id="carrito">
-    <h2>Tu Carrito</h2>
-    <ul id="lista-carrito"></ul>
-    <p>Total: $<span id="total">0</span> ARS</p>
-    <button id="vaciar-carrito">Vaciar carrito</button>
-    <button id="finalizar-compra" style="background:#008CBA; margin-top:10px;">
-      <i class="fas fa-credit-card" style="margin-right:8px;"></i> Finalizar compra
-    </button>
-  </section>
+    <section id="carrito">
+      <h2>Tu Carrito</h2>
+      <ul id="lista-carrito"></ul>
+      <p>Total: $<span id="total">0</span> ARS</p>
+      <button id="vaciar-carrito">Vaciar carrito</button>
+      <button id="finalizar-compra">
+        <i class="fas fa-credit-card" style="margin-right:8px;"></i> Finalizar compra
+      </button>
+    </section>
 
-  <section id="metodos-pago">
-    <h3>Métodos de Pago Disponibles</h3>
-    <ul>
-      <li>Tarjeta de crédito en hasta 12 cuotas sin interés</li>
-      <li>Transferencia bancaria por Mercado Pago</li>
-      <li>Pago en efectivo en nuestras sucursales</li>
-    </ul>
-  </section>
+    <section id="metodos-pago">
+      <h3>Métodos de Pago Disponibles</h3>
+      <ul>
+        <li>Tarjeta de crédito en hasta 12 cuotas sin interés</li>
+        <li>Transferencia bancaria por Mercado Pago</li>
+        <li>Pago en efectivo en nuestras sucursales</li>
+      </ul>
+    </section>
+  </main>
 
-  <footer>
+  <footer class="main-footer">
     &copy; 2025 Meteoritopc.com - Todos los derechos reservados
   </footer>
 
@@ -145,8 +228,9 @@
     class="whatsapp-float"
     aria-label="WhatsApp"
     title="Chatear por WhatsApp"
-    ><i class="fab fa-whatsapp"></i
-  ></a>
+  >
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
   <!-- Botón Toggle Dark Mode -->
   <button id="toggle-dark" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro">
@@ -156,8 +240,3 @@
   <script src="carrito.js"></script>
 </body>
 </html>
-
-
-
-
-
