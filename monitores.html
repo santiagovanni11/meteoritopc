@@ -12,6 +12,7 @@
 </head>
 <body>
   <header>Meteoritopc.com</header>
+
   <nav>
     <a href="index.html">Inicio</a>
     <a href="pc.html">PC Armadas</a>
@@ -26,21 +27,21 @@
     <div class="producto" data-nombre="Samsung Odyssey G5 27''" data-precio="85000">
       <h3>Samsung Odyssey G5 27''</h3>
       <p>144Hz, Curvo, 1ms</p>
-      <p><strong>$85,000 ARS</strong></p>
+      <p><strong>$85.000 ARS</strong></p>
       <button class="boton-comprar">Agregar al carrito</button>
     </div>
 
     <div class="producto" data-nombre="LG UltraGear 24GL600F" data-precio="45000">
       <h3>LG UltraGear 24GL600F</h3>
       <p>144Hz, TN, 1ms</p>
-      <p><strong>$45,000 ARS</strong></p>
+      <p><strong>$45.000 ARS</strong></p>
       <button class="boton-comprar">Agregar al carrito</button>
     </div>
 
     <div class="producto" data-nombre="AOC 24G2 24''" data-precio="55000">
       <h3>AOC 24G2 24''</h3>
       <p>144Hz, IPS, 1ms</p>
-      <p><strong>$55,000 ARS</strong></p>
+      <p><strong>$55.000 ARS</strong></p>
       <button class="boton-comprar">Agregar al carrito</button>
     </div>
   </section>
@@ -50,9 +51,19 @@
     <ul id="lista-carrito"></ul>
     <p>Total: $<span id="total">0</span> ARS</p>
     <button id="vaciar-carrito">Vaciar carrito</button>
-    <button id="finalizar-compra" style="background:#008CBA; margin-top:10px;">
-      <i class="fas fa-credit-card" style="margin-right:8px;"></i> Finalizar compra
+    <button id="finalizar-compra" class="boton-finalizar">
+      <i class="fas fa-credit-card"></i> Finalizar compra
     </button>
+
+    <div id="metodos-pago" style="display:none; margin-top: 20px;">
+      <h3>Métodos de Pago</h3>
+      <ul style="list-style: none; padding-left: 0;">
+        <li><i class="fas fa-university"></i> Transferencia Bancaria</li>
+        <li><i class="fas fa-wallet"></i> Mercado Pago</li>
+        <li><i class="fas fa-credit-card"></i> Tarjeta de Crédito</li>
+        <li><i class="fas fa-money-bill-wave"></i> Efectivo</li>
+      </ul>
+    </div>
   </section>
 
   <footer>
@@ -60,14 +71,9 @@
   </footer>
 
   <!-- Botón flotante WhatsApp -->
-  <a
-    href="https://wa.me/5491123456789"
-    target="_blank"
-    class="whatsapp-float"
-    aria-label="WhatsApp"
-    title="Chatear por WhatsApp"
-    ><i class="fab fa-whatsapp"></i
-  ></a>
+  <a href="https://wa.me/5491123456789" target="_blank" class="whatsapp-float" aria-label="WhatsApp" title="Chatear por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
   <!-- Botón Toggle Dark Mode -->
   <button id="toggle-dark" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro">
@@ -75,5 +81,16 @@
   </button>
 
   <script src="carrito.js"></script>
+  <script>
+    document.getElementById("finalizar-compra").addEventListener("click", function () {
+      const metodosPago = document.getElementById("metodos-pago");
+      if (metodosPago.style.display === "none") {
+        metodosPago.style.display = "block";
+        metodosPago.scrollIntoView({ behavior: "smooth" });
+      } else {
+        metodosPago.style.display = "none";
+      }
+    });
+  </script>
 </body>
 </html>
