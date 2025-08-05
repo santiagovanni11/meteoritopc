@@ -1,222 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Meteoritopc - Componentes</title>
-  <link rel="stylesheet" href="style.css" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  />
-  <style>
-    #metodos-pago {
-      max-width: 500px;
-      margin: 20px auto 40px;
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      font-size: 16px;
-      color: #333;
-    }
-    body.dark-mode #metodos-pago {
-      background: #1f1f1f;
-      color: #f1f1f1;
-    }
-    #metodos-pago h3 {
-      margin-bottom: 15px;
-      text-align: center;
-      font-size: 22px;
-      color: #222;
-    }
-    body.dark-mode #metodos-pago h3 {
-      color: #fff;
-    }
-    #metodos-pago ul {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-    }
-    #metodos-pago li {
-      margin-bottom: 12px;
-      padding-left: 25px;
-      position: relative;
-    }
-    #metodos-pago li::before {
-      content: "\f00c"; /* FontAwesome check */
-      font-family: "Font Awesome 6 Free";
-      font-weight: 900;
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: #27ae60;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Componentes - Meteoritopc</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>Meteoritopc.com</header>
-  <nav>
-    <a href="index.html">Inicio</a>
-    <a href="pc.html">PC Armadas</a>
-    <a href="componentes.html" class="activo">Componentes</a>
-    <a href="monitores.html">Monitores</a>
-    <a href="contacto.html">Contacto</a>
-  </nav>
+  <header>
+    <h1>Componentes</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="pc.html">PC Armadas</a>
+      <a href="monitores.html">Monitores</a>
+      <a href="carrito.html">Carrito</a>
+    </nav>
+  </header>
 
-  <h2 class="titulo-seccion">Componentes</h2>
+  <main>
+    <section class="productos">
+      <div class="producto" data-nombre="Procesador Ryzen 5" data-precio="150000">
+        <img src="img/ryzen5.jpg" alt="Procesador Ryzen 5">
+        <h3>Procesador Ryzen 5</h3>
+        <p>$150.000</p>
+        <button class="boton-comprar">Agregar al carrito</button>
+      </div>
 
-  <section class="catalogo" id="catalogo-componentes">
-    <div class="producto" data-nombre="AMD Ryzen 7 5700X" data-precio="84000">
-      <img
-        src="https://images-na.ssl-images-amazon.com/images/I/61h5NC4GcGL._AC_SL1500_.jpg"
-        alt="AMD Ryzen 7 5700X"
-      />
-      <h3>AMD Ryzen 7 5700X</h3>
-      <p>8 núcleos | 16 hilos</p>
-      <p><strong>$84,000 ARS</strong></p>
-      <button class="boton-comprar">Agregar al carrito</button>
+      <div class="producto" data-nombre="Motherboard B550" data-precio="90000">
+        <img src="img/motherboard.jpg" alt="Motherboard B550">
+        <h3>Motherboard B550</h3>
+        <p>$90.000</p>
+        <button class="boton-comprar">Agregar al carrito</button>
+      </div>
+
+      <div class="producto" data-nombre="Memoria RAM 16GB" data-precio="60000">
+        <img src="img/ram.jpg" alt="Memoria RAM 16GB">
+        <h3>Memoria RAM 16GB</h3>
+        <p>$60.000</p>
+        <button class="boton-comprar">Agregar al carrito</button>
+      </div>
+    </section>
+
+    <div class="finalizar-container">
+      <button id="finalizar-compra" class="boton-finalizar">Finalizar compra</button>
     </div>
+  </main>
 
-    <div class="producto" data-nombre="Memoria RAM 16GB DDR4 3200MHz" data-precio="22500">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0279/9299/8295/products/corsair-vengeance-lpx-16gb-3200mhz-ddr4-1_600x.jpg?v=1666169994"
-        alt="Memoria RAM"
-      />
-      <h3>Memoria RAM 16GB DDR4 3200MHz</h3>
-      <p>Corsair Vengeance LPX</p>
-      <p><strong>$22,500 ARS</strong></p>
-      <button class="boton-comprar">Agregar al carrito</button>
-    </div>
-
-    <div class="producto" data-nombre="Gigabyte RTX 4060 8GB" data-precio="135000">
-      <img
-        src="https://images.evga.com/products/gallery/png/12G-P5-3667-KR_XL_1.png"
-        alt="Gigabyte RTX 4060"
-      />
-      <h3>Gigabyte RTX 4060 8GB</h3>
-      <p>Windforce Edition</p>
-      <p><strong>$135,000 ARS</strong></p>
-      <button class="boton-comprar">Agregar al carrito</button>
-    </div>
-
-    <div class="producto" data-nombre="SSD Samsung 970 EVO Plus 1TB" data-precio="42000">
-      <img
-        src="https://images.samsung.com/is/image/samsung/p6pim/ar/970evo_plus_nvme_mz-v7s1t0b-am_001_front_black.jpg"
-        alt="SSD Samsung 970 EVO Plus 1TB"
-      />
-      <h3>SSD Samsung 970 EVO Plus 1TB</h3>
-      <p>Velocidad hasta 3500 MB/s</p>
-      <p><strong>$42,000 ARS</strong></p>
-      <button class="boton-comprar">Agregar al carrito</button>
-    </div>
-
-    <div class="producto" data-nombre="Disco HDD Seagate BarraCuda 2TB" data-precio="12000">
-      <img
-        src="https://www.seagate.com/www-content/product-content/barracuda-hdd/en-us/images/desktop/barracuda-2tb-hero-500.png"
-        alt="Disco HDD Seagate BarraCuda 2TB"
-      />
-      <h3>Disco HDD Seagate BarraCuda 2TB</h3>
-      <p>7200 RPM, SATA 6 Gb/s</p>
-      <p><strong>$12,000 ARS</strong></p>
-      <button class="boton-comprar">Agregar al carrito</button>
-    </div>
-  </section>
-
-  <section id="carrito">
-    <h2>Tu Carrito</h2>
-    <ul id="lista-carrito"></ul>
-    <p>Total: $<span id="total">0</span> ARS</p>
-    <button id="vaciar-carrito">Vaciar carrito</button>
-    <button id="comprar-carrito">
-      <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Comprar por WhatsApp
-    </button>
-  </section>
-
-  <section id="metodos-pago">
-    <h3>Métodos de Pago Disponibles</h3>
-    <ul>
-      <li>Tarjeta de crédito en hasta 12 cuotas sin interés</li>
-      <li>Transferencia bancaria por Mercado Pago</li>
-      <li>Pago en efectivo en nuestras sucursales</li>
-    </ul>
-  </section>
-
-  <footer>
-    &copy; 2025 Meteoritopc.com - Todos los derechos reservados
-  </footer>
-
-  <!-- Botón flotante WhatsApp -->
-  <a
-    href="https://wa.me/5491123456789"
-    target="_blank"
-    class="whatsapp-float"
-    aria-label="WhatsApp"
-    title="Chatear por WhatsApp"
-    ><i class="fab fa-whatsapp"></i
-  ></a>
-
-  <!-- Botón Toggle Dark Mode -->
-  <button id="toggle-dark" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro">
-    <i class="fas fa-moon"></i>
-  </button>
-
+  <script src="carrito.js"></script>
   <script>
-    const botonesComprar = document.querySelectorAll('.boton-comprar');
-    const listaCarrito = document.getElementById('lista-carrito');
-    const totalCarrito = document.getElementById('total');
-    const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
-    const comprarCarritoBtn = document.getElementById('comprar-carrito');
-    const toggleDark = document.getElementById('toggle-dark');
-
-    let carrito = [];
-
-    function renderCarrito() {
-      listaCarrito.innerHTML = '';
-      let total = 0;
-
-      carrito.forEach((producto, index) => {
-        const li = document.createElement('li');
-        li.textContent = `${producto.nombre} - $${producto.precio.toLocaleString('es-AR')}`;
-        const btnEliminar = document.createElement('button');
-        btnEliminar.textContent = 'X';
-        btnEliminar.style.marginLeft = '10px';
-        btnEliminar.style.background = '#e65c00';
-        btnEliminar.style.color = '#fff';
-        btnEliminar.style.border = 'none';
-        btnEliminar.style.borderRadius = '4px';
-        btnEliminar.style.cursor = 'pointer';
-        btnEliminar.style.padding = '2px 6px';
-        btnEliminar.title = 'Quitar producto';
-
-        btnEliminar.addEventListener('click', () => {
-          carrito.splice(index, 1);
-          renderCarrito();
-        });
-
-        li.appendChild(btnEliminar);
-        listaCarrito.appendChild(li);
-        total += producto.precio;
-      });
-
-      totalCarrito.textContent = total.toLocaleString('es-AR');
-    }
-
-    botonesComprar.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const productoDiv = btn.parentElement;
-        const nombre = productoDiv.getAttribute('data-nombre');
-        const precio = parseFloat(productoDiv.getAttribute('data-precio'));
-
-        carrito.push({ nombre, precio });
-        renderCarrito();
-      });
+    document.getElementById("finalizar-compra").addEventListener("click", function () {
+      window.location.href = "finalizar.html";
     });
-
-    vaciarCarritoBtn.addEventListener('click', () => {
-      carrito = [];
-      renderCarrito();
-    });
-
-    comprarCarritoBtn.addEventListener('click', () => {
-      if (carrito.length === 0)
+  </script>
+</body>
+</html>
