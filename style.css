@@ -1,0 +1,135 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f8f8f8;
+}
+
+header {
+  background: #1a1a1a;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  font-size: 28px;
+}
+
+nav {
+  background: #333;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 18px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.catalogo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.producto {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 15px;
+  text-align: center;
+}
+
+.producto img {
+  max-width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.boton-comprar {
+  display: inline-block;
+  background: #ff6f00;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.boton-comprar:hover {
+  background: #e65c00;
+}
+
+footer {
+  text-align: center;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.inicio-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 70vh;
+  text-align: center;
+}
+
+.inicio-banner h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.inicio-banner a {
+  background: #ff6f00;
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.inicio-banner a:hover {
+  background: #e65c00;
+}
+
+form {
+  max-width: 400px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  background: #ff6f00;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+form button:hover {
+  background: #e65c00;
+}
